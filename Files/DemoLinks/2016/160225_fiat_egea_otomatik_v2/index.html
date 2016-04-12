@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Fiat Egea Takeover Demo</title>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
+
+
+		<style type="text/css">
+
+			body {
+				margin: 0px;
+				background-color: #f5f6f1;
+			}
+
+			#sayfa {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				top:90px;
+				z-index: 0;
+			}
+
+			#bannerContainer {
+				position: absolute;
+				margin-left: -364px;
+				left: 50%;
+				width: 728px;
+				height: 90px;
+				z-index: 1;
+			}
+
+			#cta {
+				position: absolute;
+				width: 728px;
+				height: 90px;
+				cursor: pointer;
+			}
+
+			#takeover {
+				position: absolute;
+				margin-left: -640px;
+				left: 50%;
+				width: 1280px;
+				height: 620px;
+				z-index: 2;
+			}
+
+			#kapatBtn {
+				position: absolute;
+				float: left;
+				top: 5px;
+				right: 5px;
+				cursor: pointer;
+			}
+
+		</style>
+
+		<script type="text/javascript">
+			
+			$(document).ready(function() {
+
+				function create() {
+
+					var takeoverApp = "<iframe src='takeover/index.html' width='1280' height='600' frameborder='0'></iframe>"
+					var kapat = "<img id ='kapatBtn' src='kapat.png'>"
+					var holder = "<div id='takeover'></div>"
+
+					$('body').append(holder);
+					$('#takeover').append(takeoverApp);
+					$('#takeover').append(kapat);
+
+					takeoverClose();
+				}
+
+				function takeoverClose() {
+					$('#kapatBtn').click(function() {
+						$('#takeover').remove();
+					});
+				}
+
+				create();
+
+				$('#cta').click(function() {
+							create();
+					});
+
+  			});
+
+
+		</script>
+
+	</head>
+
+	<body>
+
+		<div id="bannerContainer">
+			<div id="cta"></div>
+			<iframe src="728x90/300x250-Egea-728X90.html" width="728" height="90" frameborder="0"></iframe>
+		</div>
+
+		<div id="sayfa">
+			<iframe src="ntv.html" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
+		</div>
+	
+	</body>
+
+</html> 

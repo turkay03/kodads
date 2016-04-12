@@ -1,0 +1,83 @@
+  /*
+  .vjs-default-skin .vjs-big-play-button { left:50%;top:50%; }
+  
+*/
+
+ .vjs-default-skin .vjs-control-bar  { background: rgba(0,0,0,0.7); background-image:url('img/d_barbg.jpg');  font-size: 115% ;}
+  .vjs-default-skin .vjs-slider { background: rgba(0,0,0,0.2333333333333333) }
+  .vjs-default-skin .vjs-control-bar {  }
+  
+  /*
+  .vjs-loading-spinner{display:none;position:absolute;top:50%;left:50%;font-size:7em;line-height:1;width:1em;height:1em;margin-left:-1.25em;margin-top:-1.25em;opacity:1;}
+.vjs-default-skin .vjs-loading-spinner:before{/*content:"\e01e";font-family:VideoJS;*/position:absolute;top:0;left:0;width:1em;height:1em;text-align:center;text-shadow:0 0 .1em #000}
+*/
+.vjs-waiting .vjs-loading-spinner,
+/*.vjs-playing .vjs-loading-spinner,*/
+.vjs-seeking .vjs-loading-spinner {
+/*
+  display: block;
+  
+   -webkit-animation: none;
+     -moz-animation: none;
+       -o-animation: none;
+          animation: none;
+*/
+  /* only animate when showing because it can be processor heavy *///
+
+}
+
+.video-js.vjs-fullscreen { position: fixed; overflow: hidden; z-index: 1000; left: 0 !important; top: 0 !important; bottom: 0 !important; right: 0 !important; width: 100% !important; height: 100% !important; position: absolute !important;}
+
+.vjs-default-skin .vjs-loading-spinner:before {
+/*
+	 background-image:url('img/loader.gif');
+	 background-repeat:no-repeat;
+	 background-position:center;
+	 width: 2.5em;
+	  height: 2.5em;
+	color:transparent;
+	 */
+}
+
+/* Errors are unrecoverable without user interaction so hide the spinner */
+.vjs-error .vjs-loading-spinner {
+  display: block;
+
+  /* ensure animation doesn't continue while hidden *///
+
+}
+
+@media screen and (max-width: 365px) {
+    .vjs-default-skin .vjs-mute-control, .vjs-default-skin .vjs-volume-menu-button {
+	  visibility:hidden!important;
+	}
+
+	.vjs-default-skin .vjs-volume-bar  {
+	 visibility:hidden!important;
+	}
+	
+	.vjs-default-skin .vjs-new-button  {
+	 visibility:hidden!important;
+	}
+	
+	.vjs-default-skin .vjs-new-button-off  {
+	 visibility:hidden!important;
+	}
+}
+
+
+.vjs-default-skin .vjs-new-button, .vjs-default-skin .vjs-control-content{
+    cursor: pointer;
+    float: right;
+	background-image:url(img/cinema_on.png);
+	background-repeat:no-repeat;
+	background-position:center;
+}
+
+.vjs-default-skin .vjs-new-button-off, .vjs-default-skin .vjs-control-content{
+	cursor: pointer;
+    float: right;
+	background-image:url(img/cinema_off.png);
+	background-repeat:no-repeat;
+	background-position:center;
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<style type="text/css" media="screen">
+		html, body { background-color: #ffffff;}
+		</style>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+	<title></title>
+<!--Adobe Edge Runtime-->
+    <script type="text/javascript" charset="utf-8" src="http://animate.adobe.com/runtime/6.0.0/edge.6.0.0.min.js"></script>
+    <style>
+        .edgeLoad-EDGE-81707973 { visibility:hidden; }
+    </style>
+<script>
+   AdobeEdge.loadComposition('950x250', 'EDGE-81707973', {
+    scaleToFit: "none",
+    centerStage: "none",
+    minW: "0px",
+    maxW: "undefined",
+    width: "950px",
+    height: "250px"
+}, {"dom":{}}, {"dom":{}});
+</script>
+<!--Adobe Edge Runtime End-->
+<!-- clicTAG Kod Bloğu Başlangıç -->
+<script type="text/javascript">
+
+                                   
+                                               (function() {
+                                       var relegateNavigation = '';
+                                       var handleClickTagMessage = function(e) {
+                                         try {
+                                           var eventData = JSON.parse(e.data);
+                                         } catch (err) {
+                                           return;
+                                         }
+                                         if (eventData.isInitClickTag) {
+                                           if (eventData.clickTags) {
+                                             for (var i = 0; i < eventData.clickTags.length; i++) {
+                                               var clkTag = eventData.clickTags[i];
+                                               window[clkTag.name] = clkTag.url;
+                                             }
+                                           } else if (eventData.clickTag) {
+                                             window.clickTag = eventData.clickTag;
+                                           }
+                                           relegateNavigation = eventData.relegateNavigation;
+                                         }
+                                       };
+
+                                       if (open.call) {
+                                         window.open = function(open) {
+                                           return function(url, name, features) {
+                                             if (relegateNavigation === 'parent') {
+                                               var message = {'clickTag': url, 'isPostClickTag': true};
+                                               parent.postMessage(JSON.stringify(message), '*');
+                                             } else {
+                                               var args = [url, name];
+                                               if (features) {
+                                                 args.push(features);
+                                               }
+                                               open.apply(window, args);
+                                             }
+                                           };
+                                         }(window.open);
+                                       }
+
+                                       if (window.addEventListener) {
+                                         window.addEventListener(
+                                             'message', handleClickTagMessage, false);
+                                       } else {
+                                         window.attachEvent('onmessage', handleClickTagMessage);
+                                       }
+                                   })();
+                                   
+                               
+                               </script>
+
+                               <script type="text/javascript">
+
+                                               var clickTag = window.location.search.replace("?clickTAG=",""); 
+                               
+                               </script>
+							   <!-- clicTAG Kod Bloğu Bitiş -->
+</head>
+<body style="margin:0;padding:0;">
+<a href="javascript:window.open(window.clickTag, '_blank')">
+	<div id="Stage" class="EDGE-81707973">
+	</div>
+                </a> 
+       
+</body>
+</html>

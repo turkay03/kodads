@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>NTVSpor</title>
+
+
+<script type="text/javascript" s>
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+var refID = getParameterByName('ref');
+var autoPlay = (getParameterByName('autoPlay') === "true");
+var pIDs = getParameterByName('pID');
+var mURL = getParameterByName('mURL');
+var posterUrl = getParameterByName('posterUrl');
+
+var urlPath = getParameterByName('urlPath');
+var section = getParameterByName('section');
+var customParam = getParameterByName('customParam');
+var siteName = getParameterByName('siteName');
+
+var gaqID_1="";
+var gaqID_2="";
+var _customParam="";
+var _hideAds=true;
+
+DygDFP = {
+	siteName: "-",
+	section: "-",
+	customParam: function(){
+		return _customParam;
+	}
+}
+
+switch(siteName){
+    case "ntvspor":
+        gaqID_1 = "UA-1120382-6";
+		gaqID_2 = "UA-47934919-1";
+		DygDFP.siteName="NTVSpor";
+		DygDFP.section="SocialPlayer";
+		_customParam="ntvsporcat";
+		_hideAds=false;
+		break;
+    default:
+		gaqID_1 = "";
+		gaqID_2 = "";
+        break;
+}
+
+
+
+
+</script>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(
+            ['_setAccount',gaqID_1],
+            ['_trackPageview'],
+            ['b._setAccount', gaqID_2],
+            ['b._trackPageview']);
+    _gaq.push(function () {
+        var pageTracker = _gat._getTrackerByName();
+        var iframe = document.getElementById('ifrmBroadage');
+        var iframeSource = iframe.src;
+        iframe.src = pageTracker._getLinkerUrl(iframeSource);
+    });
+    (function () {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+
+
+<head>
+<body>
+
+<style type="text/css">
+video {  
+   width:100%; 
+  height:100%;
+}
+body, html {
+  height: 100%;
+  margin:0px;
+}
+.player{
+width: 100%; 
+height: 100% ;
+background-color:#000;
+background-repeat:no-repeat; 
+background-position:center; 
+background-size:124px 90px, cover;
+}
+</style>
+     
+<!--
+<video width="100%" controls>
+  <source src="example.mp4" type="video/mp4">
+Your browser does not support video
+</video>
+
+ <script type="text/javascript" src="https://img-dygassets.mncdn.com/player2/js/dygPlayer.js"></script> -->
+ 
+   <script type="text/javascript" src="https://img-dygassets.mncdn.com/player2/js/dygPlayer.js"></script> 
+	
+                   <!-- <div id="tvyoPlayer" style="width: 100%; height: 100%"> -->
+				   
+				   <div id="tvyoPlayer" class="player"> 
+                   
+                         
+								
+                    
+                                  <script>
+							 	  
+								    console.log("autoPlayzzz"+autoPlay);
+									
+                                    var playerArray = Array({
+                                        divId: "tvyoPlayer",
+                                        playerType: "vod",
+                                        mobileUrl: mURL,
+                                        flashUrl: "",
+                                        alias: "63",
+                                        tags: "Tivibu,Ana Sayfa,Futbol,Spor Toto Süper Lig,Fenerbahçe",
+                                        comscore: "embed",
+                                        parts: "",
+                                        publisherId: parseInt(pIDs), //Publish ID yazılacak
+                                        referenceId: refID,
+                                        //autoPlay: autoPlay,
+										autoPlay: true,
+                                        log: true,
+                                        videoRatio: true,
+                                        hideAds: _hideAds,
+                                        hideSurver: false,
+                                        nextPartCallBack: "changeParts",
+										urlPath:urlPath
+                                    }
+              )
+                                    var player = DygPlayer();
+                                    player.createPlayer(playerArray);
+                                 </script>
+
+ </div>
+ <!--
+ <script>
+ 
+document.getElementById("tvyoPlayer").style.backgroundImage = "url('play_2.png'),url('"+posterUrl+"')";
+ </script>-->
+</body>
+</html>

@@ -1,0 +1,353 @@
+<!DOCTYPE>
+<html>
+	<head>
+        <script type="text/javascript">
+            
+            (function() {
+                var relegateNavigation = '';
+                var handleClickTagMessage = function(e) {
+                  try {
+                    var eventData = JSON.parse(e.data);
+                  } catch (err) {
+                    return;
+                  }
+                  if (eventData.isInitClickTag) {
+                    if (eventData.clickTags) {
+                      for (var i = 0; i < eventData.clickTags.length; i++) {
+                        var clkTag = eventData.clickTags[i];
+                        window[clkTag.name] = clkTag.url;
+                      }
+                    } else if (eventData.clickTag) {
+                      window.clickTag = eventData.clickTag;
+                    }
+                    relegateNavigation = eventData.relegateNavigation;
+                  }
+                };
+
+                if (open.call) {
+                  window.open = function(open) {
+                    return function(url, name, features) {
+                      if (relegateNavigation === 'parent') {
+                        var message = {'clickTag': url, 'isPostClickTag': true};
+                        parent.postMessage(JSON.stringify(message), '*');
+                      } else {
+                        var args = [url, name];
+                        if (features) {
+                          args.push(features);
+                        }
+                        open.apply(window, args);
+                      }
+                    };
+                  }(window.open);
+                }
+
+                if (window.addEventListener) {
+                  window.addEventListener(
+                      'message', handleClickTagMessage, false);
+                } else {
+                  window.attachEvent('onmessage', handleClickTagMessage);
+                }
+            })();
+            
+        </script>
+		<meta charset="UTF-8">
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta name="ad.size" content="width=1280,height=768">
+		<title>Vakıf Katılım</title>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
+
+
+<!--css-->
+		<style type="text/css">
+            body {
+                overflow: hidden;
+                margin: 0px;
+            }
+
+            #banner {
+                overflow: hidden;
+                position: absolute;
+                width: 1280px;
+                height: 768px;   
+            }
+
+            #bg {
+                margin: 0px;
+                position: absolute;
+                width: 1280px;
+                height: 768px;
+                background-color: #194e91;
+                overflow: hidden;
+            }
+
+            #icon {
+                margin: 0px;
+                position: absolute;
+                width: 212px;
+                height: 422px;
+                background: url(img/icon.png) no-repeat;
+                left: 1069px;
+                top: 70px;
+            }
+
+            #textContaner {
+                margin: 0px;
+                position: absolute;
+                left: 110px;
+                top: 110px;
+            }
+
+            #text1 {
+                margin: 0px;
+                position: absolute;
+                width: 394px;
+                height: 194px;
+                background: url(img/text1.png) no-repeat;
+            }
+
+            #text2 {
+                margin: 0px;
+                position: absolute;
+                width: 269px;
+                height: 195px;
+                background: url(img/text2.png) no-repeat;
+            }
+
+            #text3 {
+                margin: 0px;
+                position: absolute;
+                width: 328px;
+                height: 195px;
+                background: url(img/text3.png) no-repeat;
+            }
+
+            #text4 {
+                margin: 0px;
+                position: absolute;
+                width: 388px;
+                height: 195px;
+                background: url(img/text4.png) no-repeat;
+            }
+
+            #text5 {
+                margin: 0px;
+                position: absolute;
+                width: 426px;
+                height: 195px;
+                background: url(img/text5.png) no-repeat;
+            }
+
+            #text6 {
+                margin: 0px;
+                position: absolute;
+                width: 384px;
+                height: 195px;
+                background: url(img/text6.png) no-repeat;
+            }
+
+            #text7 {
+                margin: 0px;
+                position: absolute;
+                width: 261px;
+                height: 195px;
+                background: url(img/text7.png) no-repeat;
+            }
+
+            #text8 {
+                margin: 0px;
+                position: absolute;
+                width: 302px;
+                height: 195px;
+                background: url(img/text8.png) no-repeat;
+            }
+
+            #text9 {
+                margin: 0px;
+                position: absolute;
+                width: 388px;
+                height: 266px;
+                background: url(img/text9.png) no-repeat;
+            }
+
+            #vidBox {
+                margin: 0px;
+                position: absolute;
+                width: 480px;
+                height: 270px;
+                left: 568px;
+                top: 108px;
+                background-color: #000;
+            }
+
+            #vidContainer {
+                margin: 0px;
+                position: absolute;
+                width: 480px;
+                height: 270px;
+                left: 568px;
+                top: 108px;
+            }
+
+            #logoContaner {
+                margin: 0px;
+                position: absolute;
+                width: 1280px;
+                height: 285px;
+                background-color: #FFF;
+                top: 483px;
+            }
+
+            #logo {
+                margin: 0px;
+                position: absolute;
+                width: 437px;
+                height: 97px;
+                background: url(img/logo.png) no-repeat;
+                left: 75px;
+                top: 35px;
+            }
+
+            #info {
+                margin: 0px;
+                position: absolute;
+                width: 365px;
+                height: 39px;
+                background: url(img/info.png) no-repeat;
+                left: 841px;
+                top: 72px;
+            }
+
+
+
+		</style>
+
+<!--Click-->
+
+        <script type="text/javascript">
+            var clickTag = window.location.search.replace("?clickTAG=",""); 
+        </script>
+
+
+<!--Java Script-->
+
+		<script type="text/javascript">
+            $(document).ready(function() {
+                
+                
+
+                function initFunc () {
+
+                    var bg = $("#bg");
+                    var icon = $("#icon");
+                    var text1 = $("#text1");
+                    var text2 = $("#text2");
+                    var text3 = $("#text3");
+                    var text4 = $("#text4");
+                    var text5 = $("#text5");
+                    var text6 = $("#text6");
+                    var text7 = $("#text7");
+                    var text8 = $("#text8");
+                    var text9 = $("#text9");
+                    var vidBox = $("#vidBox");
+                    var logoContaner = $("#logoContaner");
+                    var logo = $("#logo");
+                    var info = $("#info");
+                    
+                    tweenIt();    
+                }
+
+
+
+                function tweenIt() {
+                    var tl = new TimelineLite();
+                    var myVideo = $("#vid");
+                    var playing = function() {
+                        vid.play(); 
+                    };
+                    
+                    tl.from(bg, 1, {opacity:0, onComplete: playing});
+                    tl.from(icon, 0.5, {x:"+=50", opacity:0, ease: Power1.easeOut}, "-=0.5");
+                    tl.from(logoContaner, 0.5, {y:"+=50", opacity:0, ease: Power1.easeOut}, "-=0");
+                    tl.from(logo, 1, {opacity:0}, "-=0.1");
+                    tl.from(info, 1, {opacity:0}, "-=0.8");
+                    tl.from(text1, 1, {opacity:0}, "-=0.8");
+                    tl.to(text1, 0.5, {opacity:0}, "+=1");
+                    tl.from(text2, 0.5, {opacity:0}, "-=0.2");
+                    tl.to(text2, 0.5, {opacity:0}, "+=1");
+                    tl.from(text3, 0.5, {opacity:0}, "-=0.2");
+                    tl.to(text3, 0.5, {opacity:0}, "+=1");
+                    tl.from(text4, 0.5, {opacity:0}, "-=0.2");
+                    tl.to(text4, 0.5, {opacity:0}, "+=1");
+                    tl.from(text5, 0.5, {opacity:0}, "-=0.2");
+                    tl.to(text5, 0.5, {opacity:0}, "+=1");
+                    tl.from(text6, 0.5, {opacity:0}, "-=0.2");
+                    tl.to(text6, 0.5, {opacity:0}, "+=1");
+                    tl.from(text7, 0.5, {opacity:0}, "-=0.2");
+                    tl.to(text7, 0.5, {opacity:0}, "+=1");
+                    tl.from(text8, 0.5, {opacity:0}, "-=0.2");
+                    tl.to(text8, 0.5, {opacity:0}, "+=1");
+                    tl.from(text9, 0.5, {opacity:0}, "-=0.2");
+                }
+
+                
+                initFunc();    
+
+            });
+
+		</script>
+
+	</head>
+
+
+<!--html-->
+	<body> 
+        <div id="banner">
+            <a href="javascript:window.open(window.clickTag, '_blank')">
+                <div id="bg">
+                    <div id="icon"></div>
+                    <div id="textContaner">
+                        <div id="text1"></div>
+                        <div id="text2"></div>
+                        <div id="text3"></div>
+                        <div id="text4"></div>
+                        <div id="text5"></div>
+                        <div id="text6"></div>
+                        <div id="text7"></div>
+                        <div id="text8"></div>
+                        <div id="text9"></div>
+                    </div>
+                    <div id="vidBox"></div>
+                    <div id="vidContainer">
+                        <video id="vid" class="video-js" muted  loop controls preload="auto" data-setup="{}">
+                            <source src="assets/vakifKatilim.mp4" type='video/mp4'>
+                            <source src="assets/vakifKatilim.webm" type='video/webm'>
+                         </video>
+                    </div>
+                    <div id="logoContaner">
+                        <div id="logo"></div>
+                        <div id="info"></div>
+                    </div>
+                </div>
+            </a>
+        </div>		
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

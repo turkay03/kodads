@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Fiat Egea Takeover Demo</title>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
+
+
+		<script type="text/javascript">
+
+		    
+			(function() {
+		        var relegateNavigation = '';
+		        var handleClickTagMessage = function(e) {
+		          try {
+		            var eventData = JSON.parse(e.data);
+		          } catch (err) {
+		            return;
+		          }
+		          if (eventData.isInitClickTag) {
+		            if (eventData.clickTags) {
+		              for (var i = 0; i < eventData.clickTags.length; i++) {
+		                var clkTag = eventData.clickTags[i];
+		                window[clkTag.name] = clkTag.url;
+		              }
+		            } else if (eventData.clickTag) {
+		              window.clickTag = eventData.clickTag;
+		            }
+		            relegateNavigation = eventData.relegateNavigation;
+		          }
+		        };
+
+		        if (open.call) {
+		          window.open = function(open) {
+		            return function(url, name, features) {
+		              if (relegateNavigation === 'parent') {
+		                var message = {'clickTag': url, 'isPostClickTag': true};
+		                parent.postMessage(JSON.stringify(message), '*');
+		              } else {
+		                var args = [url, name];
+		                if (features) {
+		                  args.push(features);
+		                }
+		                open.apply(window, args);
+		              }
+		            };
+		          }(window.open);
+		        }
+
+		        if (window.addEventListener) {
+		          window.addEventListener(
+		              'message', handleClickTagMessage, false);
+		        } else {
+		          window.attachEvent('onmessage', handleClickTagMessage);
+		        }
+		    })();
+		    
+		
+		</script>
+
+		<script type="text/javascript">
+
+			var clickTag = window.location.search.replace("?clickTAG=",""); 
+		
+		</script>
+
+
+		<style type="text/css">
+
+			body {
+				margin: 0px;
+				overflow: hidden;
+			}
+
+			@font-face {
+			    font-family: agencyBold;
+			    src: url(agency-bold.woff);
+			}
+
+			@font-face {
+			    font-family: agencyReg;
+			    src: url(agency-reg.woff2);
+			}
+
+			#takeover {
+				margin: 0px;
+				width: 1280px;
+				height: 600px;
+				position: absolute;
+				overflow: hidden;
+			}
+
+			#back {
+				margin: 0px;
+				position: absolute;
+			}
+
+			#mainvis {
+				margin: 0px;
+				position: absolute;
+			}
+
+			#title_sub1 {
+				margin: 0px;
+				position: absolute;
+				left: 377px;
+				top: 18px;
+			}
+
+			#title_sub2 {
+				margin: 0px;
+				position: absolute;
+				left: 377px;
+				top: 80px;
+			}
+
+			#araba_interior {
+				margin: 0px;
+				position: absolute;
+				left: 350px;
+				top: 0px;
+			}
+
+			#sol_box {
+				margin: 0px;
+				position: absolute;
+				left: 0px;
+				top: 0px;
+				width: 350px;
+				height: 600px;
+				background-color: #000000;
+				opacity: 0.8;
+			}
+
+			#title1 {
+				margin: 0px;
+				position: absolute;
+				left: 33px;
+				top: 24px;
+			}
+
+			#title2 {
+				margin: 0px;
+				position: absolute;
+				left: 101px;
+				top: 116px;
+			}
+
+			#left_sep {
+				margin: 0px;
+				position: absolute;
+				left: 26px;
+				top: 142px;
+			}
+
+			#logo {
+				margin: 0px;
+				position: absolute;
+				left: 1130px;
+				top: 485px;
+			}
+
+			#yil5 {
+				margin: 0px;
+				position: absolute;
+				left: 982px;
+				top: 556px;
+			}
+
+			#koc {
+				margin: 0px;
+				position: absolute;
+				left: 12px;
+				top: 576px;
+			}
+
+			#erdal {
+				margin: 0px;
+				position: absolute;
+				left: 225px;
+				top: 117px;
+			}
+
+			.details {
+				margin: 0px;
+				position: absolute;
+				left: 1290px;
+				top: 133px;
+				width: 432px;
+				height: 324px;
+				border-style: solid;
+				border-radius: 2px;
+				border-color: #cd1719;
+				border-width: 2px;
+			}
+
+			.textbox {
+				margin: 0px;
+				position: absolute;
+				left: 26px;
+				top: 170px;
+				width: 296px;
+				height: 305px;
+				font-size: 28px;
+				font-family: agencyReg;
+				color: #FFFFFF;
+			}
+
+			#kapat1_holder {
+				margin: 0px;
+				position: absolute;
+				left: 1092px;
+				top: 104px;
+				cursor: pointer;
+			}
+
+			#kapat2_holder {
+				margin: 0px;
+				position: absolute;
+				left: 383px;
+				top: 24px;
+				width: 32px;
+				height: 32px;
+				overflow: hidden;
+				cursor: pointer;
+			}
+
+			#buton1 {
+				margin: 0px;
+				position: absolute;
+				left: 566px;
+				top: 333px;
+			}
+
+			#buton2 {
+				margin: 0px;
+				position: absolute;
+				left: 850px;
+				top: 204px;
+			}
+
+			#buton3 {
+				margin: 0px;
+				position: absolute;
+				left: 1133px;
+				top: 316px;
+			}
+
+			#buton4 {
+				margin: 0px;
+				position: absolute;
+				left: 814px;
+				top: 201px;
+			}
+
+			#buton5 {
+				margin: 0px;
+				position: absolute;
+				left: 856px;
+				top: 434px;
+			}
+
+			.button_class {
+				width: 59px;
+				height: 59px;
+				border-radius: 100%;
+				cursor: pointer;
+			}
+
+			.daha {
+				border-radius: 7px;
+				background-color: #cd1719;
+			}
+
+			#daha_alt {
+				margin: 0px;
+				position: absolute;
+				width: 270px;
+				height: 40px;
+				left: 557px;
+				top: 536px;
+			}
+
+			#daha_ust {
+				margin: 0px;
+				margin-left: -123px;
+    			left: 50%;
+				position: absolute;
+				width: 246px;
+				height: 40px;
+			}
+
+			.daha p {
+				font-family: agencyBold;
+				font-size: 26px;
+				color: #ffffff;
+				text-align: center;
+				margin: 0px;
+				margin-top: 3px;
+			}
+
+
+		</style>
+
+		<script type="text/javascript">
+			
+			$(document).ready(function() {
+
+				var button_class = $(".button_class");
+				var default_text = '<div id="daha_ust" class="daha"><p>Daha Fazlası İçin Tıklayın</p></div>';
+				var buttons1 = '<div class="button_class" id="buton1"><img src="img/plus.png"></div> + <div class="button_class" id="buton2"><img src="img/plus.png"></div> + <div class="button_class" id="buton3"><img src="img/plus.png"></div>';
+				var buttons2 = '<div class="button_class" id="buton4"><img src="img/plus.png"></div><div class="button_class" id="buton5"><img src="img/plus.png"></div>';
+
+				function kapat1 () {
+					console.log("kapat1");
+					$("#kapat2_holder").empty();
+					TweenMax.to(erdal, 1, {left:"-=72", ease:Power2.easeInOut});
+					TweenMax.to(sol_box, 1, {css:{width:350}, ease:Power2.easeInOut});
+					TweenMax.to($(".textbox"), 1, {opacity:0, onComplete: function(){
+						$(".textbox").empty();
+						$(".textbox").append(default_text);
+						TweenMax.to($(".textbox"), 1, {opacity:1});
+					}});
+					TweenMax.to($(".details"), 1, {left:"+=622", ease:Power2.easeIn, onComplete: function(){
+						$(".details").empty();
+					}});
+					TweenMax.to($("#kapat1_holder"), 0.3, {opacity:0, onComplete: function(){
+						$("#kapat1_holder").empty();
+						$("#button_holder").append(buttons1);
+						TweenMax.staggerFrom($(".button_class"), 1, {opacity:0, scale:1.5, ease:Elastic.easeOut, onComplete: function(){
+							btn_over();
+							clicking();
+						}}, 0.1)
+					}});
+					
+				}
+
+				function kapat2 () {
+					console.log("kapat2");
+					TweenMax.to(erdal, 1, {left:"-=72", ease:Power2.easeInOut});
+					TweenMax.to(sol_box, 1, {css:{width:350}, ease:Power2.easeInOut});
+					$("#kapat2_holder").append(
+						'<div id="kapat2"><img src="img/kapat.png"></div>'
+					);
+					TweenMax.fromTo($("#kapat2_holder"), 1, {opacity:0}, {opacity:1});
+					TweenMax.to($(".textbox"), 1, {opacity:0, onComplete: function(){
+						$(".textbox").empty();
+						$(".textbox").append("4.54 metrelik uzunluğa sığdırılmış en geniş iç hacim,<br>yeni Fiat Egea'da.</br>");
+						TweenMax.to($(".textbox"), 1, {opacity:1});
+					}});
+					TweenMax.to($(".details"), 1, {left:"+=622", ease:Power2.easeIn, onComplete: function(){
+						$(".details").empty();
+					}});
+					TweenMax.to($("#kapat1_holder"), 0.3, {opacity:0, onComplete: function(){
+						$("#kapat1_holder").empty();
+						$("#button_holder").append(buttons2);
+						TweenMax.staggerFrom($(".button_class"), 1, {opacity:0, scale:1.5, ease:Elastic.easeOut, onComplete: function(){
+							btn_over();
+							clicking();
+						}}, 0.1)
+					}});
+					
+				}
+
+				function kapat3 () {
+					console.log("kapat3");
+					TweenMax.to($("#araba_interior"), 1, {top:"-=600", ease:Power2.easeIn, onComplete: function(){
+						$("#araba_interior").empty();
+					}});
+					TweenMax.to($(".button_class"), 1, {opacity:0, onComplete: function() {
+						$("#button_holder").empty();
+						$("#button_holder").append(buttons1);
+						TweenMax.staggerFrom($(".button_class"), 1, {opacity:0, scale:1.5, ease:Elastic.easeOut, onComplete: function(){
+							btn_over();
+							clicking();
+						}}, 0.1);
+					}});
+					TweenMax.to(sol_box, 1, {css:{width:350}, ease:Power2.easeInOut});
+					TweenMax.to($(".textbox"), 1, {opacity:0, onComplete: function(){
+						$(".textbox").empty();
+						$(".textbox").append(default_text);
+						TweenMax.to($(".textbox"), 1, {opacity:1});
+					}});
+					TweenMax.to($("#kapat2_holder"), 0.3, {opacity:0, onComplete: function(){
+						$("#kapat2_holder").empty();
+						
+					}});
+					
+				}
+
+
+
+				function btn_over () {
+					$(".button_class").mouseenter(function() {
+						TweenMax.to($(this), 0.2, {css:{backgroundColor:"#cd1719"}});
+					});
+
+					$(".button_class").mouseleave(function() {
+						TweenMax.to($(this), 0.2, {css:{backgroundColor:"none"}});
+					});
+				}
+
+
+
+
+				function clicking () {
+
+					$("#buton1").click(function() {
+					console.log("btn1 clicked");
+					var bt1 = new TimelineLite();
+
+						bt1.to([$(".button_class"), $(".textbox")], 1, {opacity:0, onComplete: function() {
+							$("#button_holder").empty();
+							$("#kapat1_holder").append(
+								'<div id="kapat1"><img src="img/kapat.png"></div>'
+							);
+							$(".textbox").empty();
+							$(".details").append(
+								'<div id="exp_jant"><img src="img/exp_jant.jpg"></div>'
+							);
+							$(".textbox").append("Yeni Fiat Egea'nın yağmur ve karanlık sensörleri, size her koşulda daha güvenli bir sürüş deneyimi yaşatır.");
+							
+						}})
+						   .to(sol_box, 1, {css:{width:1280}, ease:Power2.easeInOut}, "-=0.5")
+						   .to(erdal, 1, {left:"+=72", ease:Power2.easeInOut}, "-=1")
+						   .to($(".textbox"), 1, {opacity:1}, "-=0.5")
+						   .fromTo($(".details"), 1, {left:1280}, {left:"-=622", ease:Power2.easeOut}, "-=0.5")
+						   .fromTo($("#kapat1_holder"), 1, {opacity:0, scale:1.5}, {opacity:1, scale: 1, ease:Elastic.easeOut})
+							;
+
+							$("#kapat1_holder").click(function(){
+								kapat1();
+							});
+					});
+
+					$("#buton2").click(function() {
+						var bt1 = new TimelineLite();
+
+						bt1.to([$(".button_class"), $(".textbox")], 1, {opacity:0, onComplete: function() {
+							$("#button_holder").empty();
+							
+							$("#kapat2_holder").append(
+								'<div id="kapat2"><img src="img/kapat.png"></div>'
+							);
+							$(".textbox").empty();
+							$(".textbox").append("4.54 metrelik uzunluğa sığdırılmış en geniş iç hacim,<br>yeni Fiat Egea'da.</br>");
+							$("#araba_interior").append('<img src="img/araba_interior.jpg">');
+							
+							}})
+						   .fromTo($("#araba_interior"), 1, {top:"-600"}, {top:0, ease:Power2.easeOut})
+						   .to($(".textbox"), 1, {opacity:1, onComplete:function() {
+						   		$("#button_holder").append(buttons2);
+						   		TweenMax.fromTo($(".button_class"), 1, {opacity:0}, {opacity:1, onComplete: function() {
+						   			btn_over();
+						   			clicking();
+						   		}});
+						   }}, "-=0.5")
+						   .fromTo($("#kapat2_holder"), 1, {opacity:0, scale:1.5}, {opacity:1, scale: 1, ease:Elastic.easeOut}, "-=0.5")
+
+						;
+
+						$("#kapat2_holder").click(function(){
+								kapat3();
+							});
+
+					});
+
+					$("#buton3").click(function() {
+					console.log("btn3 clicked");
+					var bt1 = new TimelineLite();
+
+						bt1.to([$(".button_class"), $(".textbox")], 1, {opacity:0, onComplete: function() {
+							$("#button_holder").empty();
+							$("#kapat1_holder").append(
+								'<div id="kapat1"><img src="img/kapat.png"></div>'
+							);
+							$(".textbox").empty();
+							$(".details").append(
+								'<div id="exp_on"><img src="img/exp_on.jpg"></div>'
+							);
+							$(".textbox").append("Yeni Fiat Egea'nın dinamik çizgileri, onun güçlü ve sağlam formunu öne çıkarıyor. Hem kullanışlı, hem estetik.");
+							
+						}})
+						   .to(sol_box, 1, {css:{width:1280}, ease:Power2.easeInOut}, "-=0.5")
+						   .to(erdal, 1, {left:"+=72", ease:Power2.easeInOut}, "-=1")
+						   .to($(".textbox"), 1, {opacity:1}, "-=0.5")
+						   .fromTo($(".details"), 1, {left:1280}, {left:"-=622", ease:Power2.easeOut}, "-=0.5")
+						   .fromTo($("#kapat1_holder"), 1, {opacity:0, scale:1.5}, {opacity:1, scale: 1, ease:Elastic.easeOut})
+							;
+
+							$("#kapat1_holder").click(function(){
+								kapat1();
+							});
+					});
+
+					$("#buton4").click(function() {
+					console.log("btn4 clicked");
+					var bt1 = new TimelineLite();
+
+						bt1.to([$(".button_class"), $(".textbox"), $("#kapat2_holder")], 1, {opacity:0, onComplete: function() {
+							$("#button_holder").empty();
+							$("#kapat2_holder").empty();
+							$("#kapat1_holder").append(
+								'<div id="kapat1"><img src="img/kapat.png"></div>'
+							);
+							$(".textbox").empty();
+							$(".details").append(
+								'<div id="exp_multi"><img src="img/exp_multi.jpg"></div>'
+							);
+							$(".textbox").append('5" dokunmatik ekrana sahip UCONNECT multimedia sistemi.');
+							
+						}})
+						   .to(sol_box, 1, {css:{width:1280}, ease:Power2.easeInOut}, "-=0.5")
+						   .to(erdal, 1, {left:"+=72", ease:Power2.easeInOut}, "-=1")
+						   .to($(".textbox"), 1, {opacity:1}, "-=0.5")
+						   .fromTo($(".details"), 1, {left:1280}, {left:"-=622", ease:Power2.easeOut}, "-=0.5")
+						   .fromTo($("#kapat1_holder"), 1, {opacity:0, scale:1.5}, {opacity:1, scale: 1, ease:Elastic.easeOut})
+							;
+
+							$("#kapat1_holder").click(function(){
+								kapat2();
+							});
+					});
+
+					$("#buton5").click(function() {
+					console.log("btn5 clicked");
+					var bt1 = new TimelineLite();
+
+						bt1.to([$(".button_class"), $(".textbox"), $("#kapat2_holder")], 1, {opacity:0, onComplete: function() {
+							$("#button_holder").empty();
+							$("#kapat2_holder").empty();
+							$("#kapat1_holder").append(
+								'<div id="kapat1"><img src="img/kapat.png"></div>'
+							);
+							$(".textbox").empty();
+							$(".details").append(
+								'<div id="exp_vites"><img src="img/exp_vites.jpg"></div>'
+							);
+							$(".textbox").append('IPOD uyumlu AUX ve USB portları.');
+							
+						}})
+						   .to(sol_box, 1, {css:{width:1280}, ease:Power2.easeInOut}, "-=0.5")
+						   .to(erdal, 1, {left:"+=72", ease:Power2.easeInOut}, "-=1")
+						   .to($(".textbox"), 1, {opacity:1}, "-=0.5")
+						   .fromTo($(".details"), 1, {left:1280}, {left:"-=622", ease:Power2.easeOut}, "-=0.5")
+						   .fromTo($("#kapat1_holder"), 1, {opacity:0, scale:1.5}, {opacity:1, scale: 1, ease:Elastic.easeOut})
+							;
+
+							$("#kapat1_holder").click(function(){
+								kapat2();
+							});
+					});
+
+
+				}
+				
+
+				function init() {
+					
+					var tl = new TimelineLite();
+
+					tl.from(mainvis, 1, {opacity: 0})
+					  .from(sol_box, 1, {left:"-=350", ease:Power2.easeOut})
+					  .from(title1, 1, {left:"-=350", ease:Power2.easeOut}, "-=0.6")
+					  .from(title2, 1, {left:"-=350", ease:Power2.easeOut}, "-=0.6")
+					  .from(left_sep, 1, {left:"-=350", ease:Power2.easeOut}, "-=0.6")
+					  .from(erdal, 1, {top:"+=50", opacity:0, ease:Power2.easeOut}, "-=0.6")
+					  .from(title_sub1, 1, {left:"+=50", opacity:0, ease:Power2.easeOut}, "-=0.3")
+					  .from(title_sub2, 1, {left:"+=50", opacity:0, ease:Power2.easeOut}, "-=0.3")
+					  .from(koc, 1, {left:"-=65", ease:Power2.easeOut}, "-=0.5")
+					  .from(logo, 1, {left:"+=150", ease:Power2.easeOut}, "-=0.5")
+					  .fromTo($(".textbox"), 1, {opacity:0}, {opacity:1}, "-=0.5")
+					  .from(daha_alt, 1, {left:"-=30", opacity:0, ease:Power2.easeOut}, "-=0.5")
+					  .staggerFrom($(".button_class"), 1, {opacity:0, scale:1.5, ease:Elastic.easeOut, onComplete: function() {
+					  	btn_over();
+					  	clicking();
+					  }}, 0.1, "-=0.5")
+					;
+				}
+
+			init();
+
+  			});
+
+
+		</script>
+
+	</head>
+
+	<body>
+		
+		<div id="takeover">
+
+			<div id="scene">
+				<a href="javascript:window.open(window.clickTag, '_blank')">
+					<div id="back">
+						<div id="mainvis"><img src="img/back.jpg"></div>
+						<div id="title_sub1"><img src="img/title_sub1.png"></div>
+						<div id="title_sub2"><img src="img/title_sub2.png"></div>
+						<div id="daha_alt" class="daha"><p>Fiat Egea'yı Keşfedin</p></div>
+						<div id="araba_interior"></div>
+					</div>
+					<div id="sol_box"></div>
+					<div id="title1"><img src="img/title1.png"></div>
+					<div id="title2"><img src="img/title2.png"></div>
+					<div id="left_sep"><img src="img/left_sep.png"></div>
+					<div id="logo"><img src="img/logo.png"></div>
+					<div id="koc"><img src="img/koc.png"></div>
+					<div id="erdal"><img src="img/erdal.png"></div>
+					<div class="details"></div>
+					<div class="textbox">
+						<div id="daha_ust" class="daha"><p>Daha Fazlası İçin Tıklayın</p></div>
+					</div>
+				</a>
+			</div>
+
+			<div id="button_holder">
+				<div class="button_class" id="buton1"><img src="img/plus.png"></div>
+				<div class="button_class" id="buton2"><img src="img/plus.png"></div>
+				<div class="button_class" id="buton3"><img src="img/plus.png"></div>
+			</div>
+
+			<div id="kapat1_holder"></div>
+			<div id="kapat2_holder"></div>
+
+		</div>
+		
+	</body>
+
+</html> 

@@ -1,0 +1,465 @@
+var c = 0;
+     var  divId,mobileUrl,flashUrl,autoPlay,alias,tags,comscore,playerArray,videoCount,flashVersion=0,flashStatus=true,nextPartCallBack="",subTitleFile="",publisherId,referenceId,log,hideAds,hideSurvey,
+         autoRedirect,beforeChannelLogo,beforeChannelUrl,channell,channelLogo,clk,clkAlt,countryCode,defaultFlavor,dontShare,dr,exclusiveUrl,inHouse,isSerie,isSocialOn,isUncensored,itemId,
+         loginStatus,music,nextChannelLogo,nextChannelUrl,partDuration,partner,performanceMode,playbackDevice,playbackTime,refGo,seedTrackingUrl,seedUrl,selectPart,clearCache,videoRatio,cdnType="medianova",mediaId;  
+
+          var randomBeetween = 2;
+
+function DygPlayer(){
+    
+
+
+var t;
+var timer_is_on = 0;
+var motiweArray = Array({
+  512499:"Tvyo_512499_f4.mp4",
+  511640:"Tvyo_511640_f1.mp4",
+  512206:"Tvyo_512206_f1.mp4",
+  512205:"Tvyo_512205_f1.mp4",
+  511644:"Tvyo_511644_f3.mp4",
+  509659:"Tvyo_509659_f5.mp4",
+  512764:"Tvyo_512764_f1.mp4",
+  509050:"Tvyo_509050_f1.mp4",
+  512399:"Tvyo_512399_f3.mp4",
+  511539:"Tvyo_511539_f5.mp4"
+
+});
+
+/*
+
+Kiralık Aşk 3.Bölüm - Tvyo_512499_f4
+Çilek Kokusu 3.Bölüm - Tvyo_511640_f1
+Kiralık Aşk 6.Bölüm - Tvyo_512206_f1
+Kiralık Aşk 5.Bölüm - TTvyo_512205_f1
+Kiralık Aşk 4.Bölüm - Tvyo_511644_f3
+Zengin Kız Fakir Oğlan 2.Sezon 130.Bölüm - Tvyo_509659_f5
+Tatlı Küçük Yalancılar 5.Bölüm - Tvyo_512764_f1
+Paramparça 1.Sezon 31.Bölüm - Tvyo_509050_f1
+Yunus Emre "Aşkın Yolculuğu" 21.Bölüm - Tvyo_512399_f3
+Kiralık Aşk 2.Bölüm - Tvyo_511539_f5
+
+*/
+
+
+
+   var obj = {
+     createPlayer: function(paramss)
+     {  
+        playerArray = paramss;
+        this.getFlashVersion();
+        this.detectmobile();
+
+                  if(flashVersion==0 || flashStatus){
+                    loadScript("http://imasdk.googleapis.com/js/sdkloader/ima3.js",this.html5Player); 
+                  }else{
+                    loadScript("http://cdnapi.kaltura.com/html5/html5lib/v2.28/mwEmbedLoader.php",this.addPlayer);  
+                   }
+        console.log("itemId :"+itemId);
+        videoCount = paramss.length
+     },
+     getItemId:function(){
+      //itemId     =playerArray[0]["itemId"];
+     // alert("item_id"+this.itemId);
+        return  itemId;
+     },
+     doTimer:function() {
+        console.log("medianova : doTime");
+      if (!this.timer_is_on) {
+        //console.log("doTime 2");
+        //alert(1);
+          this.timer_is_on = 1;
+          this.timedCount();
+      } 
+    },
+     getParameters:function( name, url ) {
+      if (!url) url = location.href
+      name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+      var regexS = "[\\?&]"+name+"=([^&#]*)";
+      var regex = new RegExp( regexS );
+      var results = regex.exec( url );
+      return results == null ? null : results[1];
+    },
+    timedCount:function() {
+        c = c+1;
+        t = setTimeout(function(){player.timedCount()}, 1000);
+         
+    },
+    stopCount:function() {
+      console.log("stopCount :"+c);
+      clearTimeout(t);
+      timer_is_on = 0;
+    },
+     searchMotiwe:function(subject, objects) {
+
+        var matches = [];
+        var regexp = new RegExp(subject, 'g');
+
+        for (var i = 0; i < objects.length; i++) {
+            for (key in objects[i]) {
+              if(key==subject){
+                    return objects[i][key];
+                }
+              }
+            }
+        
+        
+    },
+     addPlayer:function(){
+
+      
+       //mw.setConfig('forceMobileHTML5',true);
+      for(var i=0;i<=videoCount-1;i++){
+        divId     =playerArray[i]["divId"];
+        playerType=playerArray[i]["playerType"];
+        mobileUrl=playerArray[i]["mobileUrl"];
+        flashUrl=playerArray[i]["flashUrl"];
+        alias=playerArray[i]["alias"];
+        tags=playerArray[i]["tags"];
+        comscore=playerArray[i]["comscore"];
+        autoPlay = playerArray[i]["autoPlay"];  
+        parts=playerArray[i]["parts"];
+        if(parts=="" || parts == undefined){
+          parts = "";
+        }
+        publisherId=playerArray[i]["publisherId"];
+        referenceId=playerArray[i]["referenceId"];
+        log=playerArray[i]["log"];
+        hideAds=playerArray[i]["hideAds"];
+        hideSurvey=playerArray[i]["hideSurvey"];
+        nextPartCallBack = playerArray[i]["nextPartCallBack"];
+        if(nextPartCallBack=="" || nextPartCallBack == undefined){
+          nextPartCallBack = "";
+        }
+        
+        subTitleFile = playerArray[i]["subTitleFile"];
+        if(subTitleFile=="" || subTitleFile == undefined){
+          subTitleFile = "";
+        }
+
+        if(flashUrl=="" || flashUrl == undefined){
+          flashUrl = "";
+        }
+        clearCache = playerArray[i]["clearCache"];
+        if(clearCache=="" || clearCache == undefined){
+          clearCache = "444444";
+        }
+        hideAds = playerArray[i]["hideAds"];
+        if(hideAds=="" || hideAds == undefined){
+          hideAds = false;
+        }
+
+        autoRedirect=playerArray[i]["autoRedirect"];
+        beforeChannelLogo=playerArray[i]["beforeChannelLogo"];
+        beforeChannelUrl=playerArray[i]["beforeChannelUrl"];
+        channell=playerArray[i]["channell"];
+        channelLogo=playerArray[i]["channelLogo"];
+        clk=playerArray[i]["clk"];
+        clkAlt=playerArray[i]["clkAlt"];
+        countryCode=playerArray[i]["countryCode"];
+        defaultFlavor=playerArray[i]["defaultFlavor"];
+        dontShare=playerArray[i]["dontShare"];
+        dr=playerArray[i]["dr"];
+        exclusiveUrl=playerArray[i]["exclusiveUrl"];
+        inHouse=playerArray[i]["inHouse"];
+        isSerie=playerArray[i]["isSerie"];
+        isSocialOn=playerArray[i]["publisherId"];
+        isUncensored=playerArray[i]["isSocialOn"];
+        itemId=playerArray[i]["itemId"];
+        loginStatus=playerArray[i]["loginStatus"];
+        music=playerArray[i]["music"];
+        nextChannelLogo=playerArray[i]["nextChannelLogo"];
+        nextChannelUrl=playerArray[i]["nextChannelUrl"];
+        partDuration=playerArray[i]["partDuration"];
+        partner=playerArray[i]["partner"];
+        performanceMode=playerArray[i]["performanceMode"];
+        playbackDevice=playerArray[i]["playbackDevice"];
+        playbackTime=playerArray[i]["playbackTime"];
+        refGo=playerArray[i]["refGo"];
+        seedTrackingUrl=playerArray[i]["seedTrackingUrl"];
+        seedUrl=playerArray[i]["seedUrl"];
+        selectPart=playerArray[i]["selectPart"];
+
+        videoRatio = playerArray[i]["videoRatio"];
+
+        if(videoRatio=="" || videoRatio == undefined){
+          videoRatio = false;
+        };
+
+        var matches = [];
+        var subject = itemId;
+        var regexp = new RegExp(subject, 'g');
+
+        for (var i = 0; i < motiweArray.length; i++) {
+            for (key in motiweArray[i]) {
+              if(key==subject){
+                   mediaId =  motiweArray[i][key];
+                }
+              }
+            }
+
+
+
+          if(mediaId!=undefined){
+            cdnType = "motiwe";
+            mobileUrl="http://tvyo.motiwecdn.com.streamprovider.net/tvyo/_definst/mp4:http/"+mediaId+"/playlist.m3u8";
+            flashUrl="http://tvyo.motiwecdn.com.streamprovider.net/tvyo/_definst/mp4:http/"+mediaId+"/manifest.f4m";
+                    //http://tvyo.motiwecdn.com.streamprovider.net/tvyo/_definst/mp4:http/" +mediaId+ "/manifest.f4m
+
+            publisherId="";
+            referenceId="";
+          }else{
+                                var head = document.getElementsByTagName('head')[0];
+                                var script = document.createElement('script');
+                                script.type = 'text/javascript';
+                                script.src = "http://players-p.mncdn.com/mntracker.min.js";
+                                  head.appendChild(script);
+
+
+          }
+        
+
+console.log("flashUrl :"+flashUrl);
+   var uiConfId = "11729381";
+
+
+      switch(playerType){
+          case "vod":
+            uiConfId = "11729381";
+           break;
+           case "live":
+            uiConfId= "20952162";
+           break;
+           case "tvyolive":
+            uiConfId= "10439471";
+           break;
+           case "tvyovod":
+            uiConfId= "27147171";
+           break;
+           case "tvyovodtest":
+            uiConfId= "10001241";
+           break;
+          case "tvyolivetest":
+            uiConfId= "10001241";
+           break;
+          case "vouge":
+            uiConfId= "29873821";
+           break;
+           default:
+            uiConfId = "11729381";
+            break; 
+
+      }
+              log:"true"
+
+                        kWidget.embed({
+                            "targetId": divId,
+                            "cache_st": 33445522,  // player xml gÃ¼ncellemek iÃ§in random bir deÄŸer.
+                            "wid": "_990652",
+                            "uiconf_id": uiConfId,
+                         "flashvars": {
+                           //"kml":"local",
+                            //"kmlPath": 'http://ilhan.local/tvyo/test/kaltura/config.php',
+                             entryId: flashUrl,//'http://startv.motiwecdn.com/startv/_definst_/mp4:startv/StarTV/Tanitim/miniplayer/kardepayi_29bolum_fragmani_2145r.mp4/manifest.f4m?e11b3501178b61b39327ddbaf0f1382abd05b815ab42199508e1cad6e53a87633bf76528aa98499c5311d40a48306387&amp;v=1', //harici video url 
+                             sourceType: 'url', //harici video url eklendiÄŸinde bu parametre gÃ¶nderilir.
+                             //   ks: 'NGM5NDk1MmUwYzI1OGY0M2EyNzM4YzcxMTk2NmZhYmVkOWUxZTYyMnw5OTA2NTI7OTkwNjUyOzE0MTAzMzc4MjQ7MDs0NzExO0thbHR1cmFVc2VyO3N2aWV3Oio',
+                             'video.keepAspectRatio':videoRatio,
+                            autoPlay: autoPlay,
+                             streamerType: 'hdnetworkmanifest',
+                             'akamaiHD.loadingPolicy': 'preInitialize',
+                             'akamaiHD.asyncInit': true,
+                             preloaderPath: 'http://static.tvyo.com/player/preloader_n.swf',
+                             centerPreloader: true,
+                             channell:channell, // logo yerleÅŸimi iÃ§in kanal ismi
+                             alias:alias, //videoplaza alias
+                             tags:tags, //videoplaza tags  
+                             twoPhaseManifest: true,
+                             hide_ads:hideAds,
+                             is_serie:1,
+                             nextPartCallBack:nextPartCallBack,
+                             comscore: comscore,
+                             selectPart:parts,
+                             PublisherId:publisherId,
+                             ReferenceId:referenceId,
+                             subTitleFile:subTitleFile,
+                             autoRedirect:autoRedirect,
+                             beforeChannelLogo:beforeChannelLogo,
+                             beforeChannelUrl:beforeChannelUrl,
+                             channell:channell,
+                             channelLogo:channelLogo,
+                             clk:clk,
+                             clkAlt:clkAlt,
+                             countryCode:countryCode,
+                             defaultFlavor:defaultFlavor,
+                             dontShare:dontShare,
+                             dr:dr,
+                             exclusiveUrl:exclusiveUrl,
+                             inHouse:inHouse,
+                             isSerie:isSerie,
+                             isSocialOn:isSocialOn,
+                             isUncensored:isUncensored,
+                             itemId:itemId,
+                             loginStatus:loginStatus,
+                             music:music,
+                             nextChannelLogo:nextChannelLogo,
+                             nextChannelUrl:nextChannelUrl,
+                             partDuration:partDuration,
+                             partner:partner,
+                             performanceMode:performanceMode,
+                             playbackDevice:playbackDevice,
+                             playbackTime:playbackTime,
+                             refGo:refGo,
+                             seedTrackingUrl:seedTrackingUrl,
+                             seedUrl:seedUrl,
+                             log:"log"
+                         },'params':{ // params allows you to set flash embed params such as wmode, allowFullScreen etc
+                           'wmode': 'transparent' 
+                          }
+
+                        });   
+
+
+ 
+        }
+     },
+      html5Player:function(){
+        divId     =playerArray[0]["divId"];
+        mobileUrl=playerArray[0]["mobileUrl"];
+        itemId=playerArray[0]["itemId"];
+       document.getElementById(divId).innerHTML = "<video width=\"100%\" height=\"100%\"  autoplay=\"false\" controls x-webkit-airplay=\"allow\" id=\""+divId+"_pl"+"\"><source src="+mobileUrl+"></video><div id='adContainer'></div>"
+ 
+                                var head = document.getElementsByTagName('head')[0];
+                                var script = document.createElement('script');
+                                script.type = 'text/javascript';
+                                script.src = "http://img-dygassets.mncdn.com/player/ads.js";
+                                  head.appendChild(script);
+
+     },
+      getVideoContent:function() { 
+         var metas = document.getElementsByTagName('meta'); 
+         var metaValue = {};
+         for (i=0; i<metas.length; i++) { 
+            if (metas[i].getAttribute("property") == "dyg:site") { 
+                //metaValue ="site:"+metas[i].getAttribute("content"); 
+                metaValue.site = metas[i].getAttribute("content");
+            
+            } 
+            if (metas[i].getAttribute("property") == "dyg:section") { 
+               metaValue.section=metas[i].getAttribute("content");
+            
+            } 
+            if (metas[i].getAttribute("property") == "dyg:target") { 
+               metaValue.target=metas[i].getAttribute("content");
+            
+            } 
+         } 
+//alert(metaValue.site);
+          return metaValue;
+      },
+     detectmobile:function() { 
+       if( navigator.userAgent.match(/Android/i)
+       || navigator.userAgent.match(/webOS/i)
+       || navigator.userAgent.match(/iPhone/i)
+       || navigator.userAgent.match(/iPad/i)
+       || navigator.userAgent.match(/iPod/i)
+       || navigator.userAgent.match(/BlackBerry/i)
+       || navigator.userAgent.match(/Windows Phone/i)
+       ){
+          flashStatus =  true;
+        }
+       else {
+          flashStatus = false;
+        }
+      },
+    getFlashVersion:function(){
+          // ie
+         
+          try {
+            try {
+              // avoid fp6 minor version lookup issues
+              // see: http://blog.deconcept.com/2006/01/11/getvariable-setvariable-crash-internet-explorer-flash-6/
+              var axo = new ActiveXObject('ShockwaveFlash.ShockwaveFlash.6');
+              try { axo.AllowScriptAccess = 'always'; }
+              catch(e) { flashVersion = '6,0,0'; }
+            } catch(e) {}
+            flashVersion =  new ActiveXObject('ShockwaveFlash.ShockwaveFlash').GetVariable('$version').replace(/\D+/g, ',').match(/^,?(.+),?$/)[1];
+          // other browsers
+          } catch(e) {
+            try {
+              if(navigator.mimeTypes["application/x-shockwave-flash"].enabledPlugin){
+                flashVersion = (navigator.plugins["Shockwave Flash 2.0"] || navigator.plugins["Shockwave Flash"]).description.replace(/\D+/g, ",").match(/^,?(.+),?$/)[1];
+              }
+            } catch(e) {}
+          }
+          //flashVersion = '0,0,0';
+        }
+
+
+  };
+
+
+  return obj;
+}
+
+
+
+ var playerClass = DygPlayer();
+ var playStatus = false;
+
+
+
+
+
+
+function jsCallbackReady(player_id) {
+  //console.log("jsCallbackReady");
+  var kdp = document.getElementById(player_id);
+ 
+  kdp.kBind( 'afterAd', function(){
+
+          playerClass.doTimer();
+   
+    //console.log("afterAd");
+  }) ;
+  kdp.kBind( 'playerPlayed', function(data,id){  
+    if(playStatus==false){
+      player.stopCount();
+      console.log('medianova:play:'+c);
+      playStatus = true;
+
+      console.log("sipru :"+cdnType+':firstPlay:'+c); 
+      tvyoPlayerEvents('play');  
+      Sipru.General.tracker('CDN-TEST', cdnType+':firstPlay:'+c);    
+    }
+  }); 
+  
+  kdp.kBind( 'mediaError', function(){  console.log("sipru :"+cdnType+':mediaError:') ;  Sipru.General.tracker('CDN-TEST', cdnType+':mediaError:');   } ); 
+  kdp.kBind( 'mediaLoadError', function(){ console.log("sipru :"+cdnType+':mediaLoadError:') ;  Sipru.General.tracker('CDN-TEST', cdnType+':mediaLoadError:'); }); 
+  kdp.kBind( 'playerStateChange', function(data,id){  console.log("sipru :"+cdnType+':buffer:');  if(data=="buffering"){  Sipru.General.tracker('CDN-TEST', cdnType+':buffer:');  }  }); 
+  kdp.kBind( 'playbackComplete', function(data,id){  console.log("sipru :"+cdnType+':Complete:');  Sipru.General.tracker('CDN-TEST', cdnType+':Complete:');    }); 
+
+    
+  
+    kdp.kBind( 'doPlay', function(){  tvyoPlayerEvents('play'); }); 
+    kdp.kBind( 'doPause', function(){ tvyoPlayerEvents('pause'); }); 
+    kdp.kBind( 'doStop', function(){ tvyoPlayerEvents('stop'); }); 
+}
+
+function loadScript(url, callback)
+{
+
+  //setTimeout("callback()", 2000);
+    // Adding the script tag to the head as suggested before
+    var head = document.getElementsByTagName('head')[0];
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = url;
+
+    // Then bind the event to the callback function.
+    // There are several events for cross browser compatibility.
+    script.onreadystatechange = callback;
+    script.onload = callback;
+    //script.onerror = errorFunc;
+
+    // Fire the loading
+    head.appendChild(script);
+}
