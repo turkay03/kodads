@@ -1,4 +1,5 @@
-var LdbHeight =0;
+var LdbHeight = 0;
+var showLdb = 0;
 DygDFP.Brand = {
     Startv: {
 		OldPageSkinTop:0,
@@ -49,7 +50,7 @@ DygDFP.Brand = {
 					var adPlatform = 'Desktop';
 					var AdUnitBase = "{0}/{1}/{2}/{3}".format(AdUnitId,DygDFP.siteName,adPlatform,DygDFP.section);
 
-					//gptadslots[0] = googletag.defineOutOfPageSlot(AdUnitBase +'/INS', 'div-interstitial').setTargeting('pos', ['ins']).addService(googletag.pubads()).setCollapseEmptyDiv(true,true);
+					gptadslots[0] = googletag.defineOutOfPageSlot(AdUnitBase +'/INS', 'div-interstitial').setTargeting('pos', ['ins']).addService(googletag.pubads()).setCollapseEmptyDiv(true,true);
 					gptadslots[1] = googletag.defineSlot(AdUnitBase + '/LDB',[[728, 90], [970, 90]], 'div-Tepe_728x90').setTargeting('pos', ['ldb']).addService(googletag.companionAds()).addService(googletag.pubads()).setCollapseEmptyDiv(true,true);
 					gptadslots[2] = googletag.defineOutOfPageSlot(AdUnitBase +'/SKIN', 'div-PageSkin').setTargeting('pos', ['skin']).addService(googletag.companionAds()).addService(googletag.pubads()).setCollapseEmptyDiv(true,true);
 					gptadslots[3] = googletag.defineSlot(AdUnitBase + '/MPU1', [[300, 250], [300, 600]], 'div-300x250_Ros-1').setTargeting('pos', ['mpu1']).addService(googletag.companionAds()).addService(googletag.pubads()).setCollapseEmptyDiv(true,true);
@@ -76,6 +77,7 @@ DygDFP.Brand = {
 									$('#div-PageSkin').css('height','0px');
 									googletag.cmd.push(function () { googletag.display('div-PageSkin'); });
 								}, 1000);
+
 							} else {
 								setTimeout(function () {
 									DygDFP.PageSkin.marginTop = $("#header").outerHeight() + $("#subPagesHeader").outerHeight();
@@ -175,6 +177,7 @@ DygDFP.Brand = {
 				googletag.enableServices();
 			});
 
+			/*
 			if(window.innerWidth > 1620 ){
 				DygDFP.PageSkin.containerWidth = 1580;
 			}
@@ -183,7 +186,8 @@ DygDFP.Brand = {
 			}
 			else if(window.innerWidth <= 1200){
 				DygDFP.PageSkin.containerWidth = 960;
-			}
+			}*/
+			DygDFP.PageSkin.containerWidth = 980;
 
 			DygDFP.LeaderBoard.backgroundColor = "#222222";
 			$('header.sticky').after("<div id='mastheadDiv'></div>");
@@ -196,6 +200,8 @@ DygDFP.Brand = {
 			$(document).ready(function () {				
 				if(DygDFP.device.isWeb())
 				{
+
+
 					$("body").prepend("<div id='div-PageSkin_rev' style='display:none'></div>");
 					$("body").prepend("<div id='div-Srvy' style='display:none'></div>");
 					$("body").prepend("<div id='div-interstitial' style='display:none'></div>");
@@ -231,6 +237,8 @@ DygDFP.Brand = {
 			});
         },
         preparePageSkin: function (hasTopImage) {
+			DygDFP.PageSkin.containerWidth = 980;
+			$('body').addClass('ps');
 			DygDFP.Brand.Startv.OldPageSkinTop = DygDFP.PageSkin.marginTop;
             DygDFP.PageSkin.changeMarginTop();
 			var toTopHeight = $('.social').outerHeight() + $('.navigation').outerHeight() + LdbHeight;
@@ -301,7 +309,9 @@ $(document).ready(function(){
 	//console.log('123');
 	DygDFP.Brand.Startv.init();
 	$(window).resize(function(){
-		if(window.innerWidth > 1620 ){
+		DygDFP.PageSkin.containerWidth = 980;
+		DygDFP.PageSkin.resize();
+		/*if(window.innerWidth > 1620 ){
 			DygDFP.PageSkin.containerWidth = 1580;
 			DygDFP.PageSkin.resize();
 		}
@@ -310,9 +320,9 @@ $(document).ready(function(){
 			DygDFP.PageSkin.resize();
 		}
 		else if(window.innerWidth <= 1200){
-			DygDFP.PageSkin.containerWidth = 960;
+			DygDFP.PageSkin.containerWidth = 980;
 			DygDFP.PageSkin.resize();
-		}
+		}*/
 	});
 
 	$(window).scroll(function(){

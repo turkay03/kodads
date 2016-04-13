@@ -2446,11 +2446,12 @@ $(window).scroll(function() {
 			$("#RightSkin").css("position","fixed");
 			$("#RightSkin").css("top",$("header.cf").outerHeight());
 		}
-		else{
-		$("#LeftSkin").css("position", "fixed");
-      $("#RightSkin").css("position", "fixed");
-      $("#RightSkin").css("top", 0);
-      $("#LeftSkin").css("top", 0);
+		else
+        {
+            $("#LeftSkin").css("position", "fixed");
+            $("#RightSkin").css("position", "fixed");
+            $("#RightSkin").css("top", 0);
+            $("#LeftSkin").css("top", 0);
 		}
 			
   }
